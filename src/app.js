@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import ReactDOM from 'react-dom'
+import MainPage from './components/MainPage'
 
 
-ReactDOM.render(<p>Hi</p>, document.querySelector('#appRoot'))
+ReactDOM.render(<MainPage />, document.querySelector('#appRoot'))
