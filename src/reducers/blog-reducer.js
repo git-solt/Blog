@@ -1,4 +1,5 @@
 import uuid from 'uuid'
+import moment from 'moment'
 
 const blogReducer = (state, action)=> {
   switch (action.type) {
@@ -16,7 +17,8 @@ const blogReducer = (state, action)=> {
         if(cur.id === action.id) {
           return {
             ...cur,
-            ...action.updates
+            ...action.updates,
+            editedAt: moment().valueOf()
           }
         } else {
           return cur

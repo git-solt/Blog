@@ -1,7 +1,9 @@
 import React, { useContext, useReducer, useEffect, useState } from 'react'
 import { addPost, removePost, updatePost } from '../generators/actions'
 import AppContext from '../context/app-context'
+import BlogForm from './BlogForm'
 import blogReducer from '../reducers/blog-reducer'
+
 
 const CreatePostPage = () => {
   
@@ -24,16 +26,16 @@ const CreatePostPage = () => {
   // useEffect(() => dispatchContext(updatePost({ id: '23a1', updates: { title: '!!!', body } })), [body])
 
   useEffect(() => {
-    dispatchContext(removePost('23a0'))
+    dispatchContext(updatePost({ id: '23a1', updates: { body: 'Damns son' } }))
   }, [body])
 
+  
 
   return (
-    <form>
-      <input onChange={(e) => { setTitle(e.target.value) }} />
-      <textarea onChange={(e) => { setBody(e.target.value) }} />
-      <button >Create</button>
-    </form>
+    <div>
+      <h2>Create a Post</h2>
+      <BlogForm />
+    </div>
   )
 }
 export default CreatePostPage
