@@ -1,16 +1,28 @@
-import React, { useContext } from 'react' 
+import React, { useState, useContext, useEffect } from 'react'
 import AppContext from '../context/app-context'
 import Posts from './Post'
+import postSelector from '../selectors/postSelector'
+import {database} from '../firebase/firebase'
+
+
+
+
 
 const Bloglist = () => {
 
-  const {posts} = useContext(AppContext)
+  
+
+
+  const { copy, posts, filter} = useContext(AppContext)
+  const selectedPosts = postSelector(posts, filter)
+
+  console.log('BLOG LISTE: ', copy)
   
 
   return (
     <div>
-      {posts.map(({title, id, createdAt, editedAt, body}) => 
-        <Posts 
+      {selectedPosts.map(({ title, id, createdAt, editedAt, body }) =>
+        <Posts
           id={id}
           key={id}
           title={title}

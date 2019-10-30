@@ -1,11 +1,12 @@
-import moment from 'moment'
 
 
-const addPost = ({ title, body } = {}) => ({
+
+const addPost = ({title, body, createdAt, id}) => ({
   type: 'ADD_POST',
   title,
   body,
-  createdAt: moment().valueOf()
+  createdAt,
+  id
 })
 
 const removePost = (id) => ({
@@ -14,10 +15,11 @@ const removePost = (id) => ({
 
 })
 
-const updatePost = ({id, updates}) => ({
+const updatePost = ({id, updates, editedAt}) => ({
   type: 'UPDATE_POST',
   id,
-  updates
+  updates,
+  editedAt
 })
 
 export { addPost, removePost, updatePost }

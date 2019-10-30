@@ -1,5 +1,6 @@
 const path = require('path')
 
+
 module.exports = {
   entry: './src/app.js',
   output: {
@@ -12,10 +13,20 @@ module.exports = {
       loader: 'babel-loader',
       test: /\.js$/,
       exclude: /node_modules/
+    }, {
+      test: /\.s?css$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader'
+      ]
     }]
   },
+
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true
-  }
+  },
+
+
 }

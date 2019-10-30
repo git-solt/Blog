@@ -1,5 +1,4 @@
-import uuid from 'uuid'
-import moment from 'moment'
+
 
 const blogReducer = (state, action)=> {
   switch (action.type) {
@@ -8,7 +7,7 @@ const blogReducer = (state, action)=> {
         title: action.title,
         body: action.body,
         createdAt: action.createdAt,
-        id: `23a${state.length}`
+        id: action.id
       }]
     case 'REMOVE_POST' :
       return state.filter(({id}) => id !== action.id)
@@ -18,7 +17,7 @@ const blogReducer = (state, action)=> {
           return {
             ...cur,
             ...action.updates,
-            editedAt: moment().valueOf()
+            editedAt: action.editedAt
           }
         } else {
           return cur

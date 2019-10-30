@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -7,8 +8,8 @@ const Posts = ({ title, body, createdAt, editedAt, id }) => (
     <div>
       <p>{body}</p>
       <footer>
-        {createdAt}
-        {editedAt && editedAt}
+        {moment(createdAt).format('MMMM Do YYYY, h:mm a')}
+        {editedAt && <p>Last edited: {moment(editedAt).fromNow()}</p>}
       </footer>
     </div>
   </Link>
