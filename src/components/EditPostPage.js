@@ -4,15 +4,16 @@ import AppContext from '../context/app-context'
 import { database } from '../firebase/firebase'
 import { removePost, updatePost } from '../generators/actions'
 import PostForm from './PostForm'
-
+import {auth} from '../firebase/firebase'
 
 const EditPostPage = (props) => {
   const { posts, dispatchContext } = useContext(AppContext)
   const id = props.match.params.id
+  const authId = auth.currentUser.uid
   const match = posts.find(({ id }) => id === props.match.params.id)
 
   const deletePost = () => {
-    database.ref(`posts/${id}`).remove()
+    database.ref(`users/${authId}/posts/${id}`).remove()
       .then(() => {
         dispatchContext(removePost(id))
         props.history.push('/dashboard')
@@ -24,7 +25,7 @@ const EditPostPage = (props) => {
   const updateHandler = (data) => {
 
     const editedAt = moment().valueOf()
-    database.ref(`posts/${id}`).update({ ...data, editedAt })
+    database.ref(`users/${authId}/posts/${id}`).update({ ...data, editedAt })
       .then(() => {
         dispatchContext(updatePost({
           id,

@@ -24,39 +24,30 @@ const MainPage = ({defaultState}) => {
     endDate: undefined,
   })
 
-  useEffect(() => {
-    console.log('@@|||COMPONENT MOMUNTED|||@@', posts)
-    database.ref('posts').once('value', (snap) => {
-      snap.forEach((cur) => {
-        posts.push({ id: cur.key, ...cur.val() })
-        console.log(posts)
-      })
-      return () => {console.log('cleanup', posts)}
-    })
-  }, [])
+
 
   useEffect(() => {
-    dispatchContext(addPost({
-      title: 'First title 1',
-      body: 'Dummy body'
-    }))
+    // dispatchContext(addPost({
+    //   title: 'First title 1',
+    //   body: 'Dummy body'
+    // }))
 
-    dispatchContext(addPost({
-      title: 'Aftertitle 2',
-      body: 'My second post for testing'
-    }))
+    // dispatchContext(addPost({
+    //   title: 'Aftertitle 2',
+    //   body: 'My second post for testing'
+    // }))
 
 
     // dispatchFilter(sortByTitle())
     // dispatchFilter(sortByDate())
     // dispatchFilter(setStartDate(moment().subtract(10, 'days').valueOf()))
     // dispatchFilter(setEndDate(moment().subtract(2, 'days').valueOf()))
-    dispatchFilter(sortByTitle())
-    dispatchFilter(searchByText(''))
-    dispatchContext(addPost({
-      title: 'Dummypost 3',
-      body: 'My second post for testing'
-    }))
+    // dispatchFilter(sortByTitle())
+    // dispatchFilter(searchByText(''))
+    // dispatchContext(addPost({
+    //   title: 'Dummypost 3',
+    //   body: 'My second post for testing'
+    // }))
 
 
 
