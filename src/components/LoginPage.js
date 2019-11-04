@@ -7,6 +7,7 @@ const LoginPage = (props) => {
 
   const [signUp, setSignUp] = useState(false)
   const [emailSignIn, setEmailSignIn] = useState(false)
+  const [error, setErrorMessage] = useState('')
   const googleSignIn = () => {
     firebase.auth().signInWithPopup(googleProvider)
     // .then((result) => console.log(result.user, result.credential) )
@@ -14,6 +15,9 @@ const LoginPage = (props) => {
 
   const signInWithEmail = (email, password) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch((error) => {
+        setErrorMessage('No user with this password or email. Please check spelling and provide valid information')
+      })
   }
 
   const createUser = (email, password) => {
@@ -27,7 +31,7 @@ const LoginPage = (props) => {
       <h3>Or</h3>
       <button onClick={() => setEmailSignIn(true)}>Your email</button>
       {emailSignIn &&
-      <SignInWithEmailForm onSubmit={signInWithEmail}/>}
+      <SignInWithEmailForm errorMessage={error} onSubmit={signInWithEmail}/>}
       {!signUp &&
         <div>
           <p>Don't have an account? </p> 

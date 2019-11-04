@@ -14,8 +14,8 @@ import { database } from '../firebase/firebase'
 
 
 
-const MainPage = ({defaultState}) => {
-  
+const MainPage = ({ defaultState, curId }) => {
+
   let [posts, dispatchContext] = useReducer(postReducer, defaultState)
   const [filter, dispatchFilter] = useReducer(filterReducer, {
     searchWord: '',
@@ -26,40 +26,8 @@ const MainPage = ({defaultState}) => {
 
 
 
-  useEffect(() => {
-    // dispatchContext(addPost({
-    //   title: 'First title 1',
-    //   body: 'Dummy body'
-    // }))
-
-    // dispatchContext(addPost({
-    //   title: 'Aftertitle 2',
-    //   body: 'My second post for testing'
-    // }))
 
 
-    // dispatchFilter(sortByTitle())
-    // dispatchFilter(sortByDate())
-    // dispatchFilter(setStartDate(moment().subtract(10, 'days').valueOf()))
-    // dispatchFilter(setEndDate(moment().subtract(2, 'days').valueOf()))
-    // dispatchFilter(sortByTitle())
-    // dispatchFilter(searchByText(''))
-    // dispatchContext(addPost({
-    //   title: 'Dummypost 3',
-    //   body: 'My second post for testing'
-    // }))
-
-
-
-
-
-  }, []
-
-  )
-
-  // useEffect(() => {
-  //   console.log(filter)
-  // }, [filter])
 
 
 
@@ -79,6 +47,7 @@ const MainPage = ({defaultState}) => {
         dispatchContext,
         filter,
         dispatchFilter,
+        isAuthenticated:!!curId
 
       }}>
         <Header />

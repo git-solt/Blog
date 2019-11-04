@@ -11,6 +11,11 @@ const EditPostPage = (props) => {
   const id = props.match.params.id
   const authId = auth.currentUser.uid
   const match = posts.find(({ id }) => id === props.match.params.id)
+  
+  if (!match) {
+    props.history.push('/dashboard')
+  }
+
 
   const deletePost = () => {
     database.ref(`users/${authId}/posts/${id}`).remove()

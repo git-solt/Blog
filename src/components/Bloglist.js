@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import AppContext from '../context/app-context'
 import Posts from './Post'
 import postSelector from '../selectors/postSelector'
-import {database} from '../firebase/firebase'
+
 
 
 
@@ -16,8 +16,7 @@ const Bloglist = () => {
   const { copy, posts, filter} = useContext(AppContext)
   const selectedPosts = postSelector(posts, filter)
 
-  console.log('BLOG LISTE: ', copy)
-  
+
 
   return (
     <div>
